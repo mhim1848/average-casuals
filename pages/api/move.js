@@ -22,5 +22,5 @@ export default function handler(req, res) {
     const filtered = legal.filter(e=>e.row < 6);
     const move = filtered[Math.floor(Math.random() * filtered.length)].col
 
-    res.status(200).json(move)
+    res.status(200).json({column:move})
 }
