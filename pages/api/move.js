@@ -22,7 +22,5 @@ export default function handler(req, res) {
     nextTable(t, index, 6 - item.row, response.player)
   );
 
-  console.log(nextSteps);
-
-  res.status(200).json(legal);
+  res.status(200).json(nextSteps);
 }
