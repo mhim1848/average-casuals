@@ -15,13 +15,29 @@ export default function handler(req, res) {
     "player": "F"
 }`
 
-    // const response = JSON.parse(req.body.board ?? '[]');
+    // const board = JSON.parse(r ?? '[]');
+    const board = req.body.board;
 
-    const transpose = R.transpose(req.body.board)
+    const transpose = R.transpose(board)
     const legal = transpose.map((e, index) => ({row:e.length - 1 - e.reverse().findIndex(i => i === '_'), col:index}))
     const filtered = legal.filter(e=>e.row < 6);
-    console.log(filtered[Math.floor(Math.random() * filtered.length)])
     const move = filtered[Math.floor(Math.random() * filtered.length)].col
 
     res.status(200).json({column:move})
+}
+
+
+function checkWin(board) {
+    board.forEach((row, index) => {
+        checkNeighbour(null, row, index)
+    })
+}
+
+function checkNeighbour(char, row, index) {
+    row.reverse().forEach((cell, cellIndex) => {
+        if (cell === '_') return;
+        if (cell === char) {
+
+        }
+    })
 }
